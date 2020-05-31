@@ -130,5 +130,7 @@ tags
 test/unittest
 humidifier/libhumidifier.so*
 
+oe-logs
+oe-workdir
 
 # End of https://www.gitignore.io/api/vim,c++,cmake,emacs

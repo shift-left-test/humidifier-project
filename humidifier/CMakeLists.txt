@@ -22,8 +22,9 @@
 
 build_shared_library(
     NAME humidifier
+    SRCS src/Humidifier.cpp
     VERSION ${PROJECT_VERSION}
-    PUBLIC_HEADERS ${CMAKE_SOURCE_DIR}/external
+    PUBLIC_HEADERS include ${CMAKE_SOURCE_DIR}/external
 )
 
 ######################################################################
@@ -41,6 +42,6 @@ build_shared_library(
 #
 # install(TARGETS humidifier
 # 	RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
-#         LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+#       LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
 # 	ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
 # 	PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_OLDINCLUDEDIR})
