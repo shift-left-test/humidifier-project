@@ -32,7 +32,7 @@ set_cxx_standard(14)
 set_default_build_type(Release)
 
 if(ENABLE_TESTS)
-  enable_static_analysis()
+  enable_static_analysis(clang-tidy cppcheck cpplint lwyu)
   enable_testing()
   enable_test_coverage()
 endif()
