@@ -20,28 +20,21 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-build_shared_library(
-    NAME humidifier
-    SRCS src/Humidifier.cpp
-    VERSION ${PROJECT_VERSION}
-    PUBLIC_HEADERS include ${CMAKE_SOURCE_DIR}/external
+add_library(humidifier SHARED src/Humidifier.cpp)
+
+set_target_properties(humidifier PROPERTIES
+  VERSION ${PROJECT_VERSION}
+  SOVERSION ${PROJECT_VERSION_MAJOR}
 )
 
-######################################################################
-#
-# The code above can be written as below using the CMake commands.
-#
-# add_library(humidifier SHARED src/Humidifier.cpp)
-#
-# set_target_properties(humidifier PROPERTIES
-#   VERSION ${PROJECT_VERSION}
-#   SOVERSION ${PROJECT_VERSION_MAJOR})
-#
-# target_include_directories(humidifier
-#   PUBLIC include ${CMAKE_SOURCE_DIR}/external)
-#
-# install(TARGETS humidifier
-# 	RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
-#       LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-# 	ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
-# 	PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_OLDINCLUDEDIR})
+target_include_directories(humidifier PUBLIC
+  include
+  ${CMAKE_SOURCE_DIR}/external
+)
+
+install(TARGETS humidifier
+  RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+  LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+  ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+  PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_OLDINCLUDEDIR}
+)

@@ -22,19 +22,19 @@
 
 cmake_minimum_required(VERSION 3.3 FATAL_ERROR)
 
-project(HumidifierProject VERSION 1.0.0)
-
-include(CMakeUtils)
+project(HumidifierProject VERSION 2.0.0)
 
 option(ENABLE_TESTS "Enable tests" OFF)
 
-set_cxx_standard(14)
-set_default_build_type(Release)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_EXTENSIONS OFF)
 
 if(ENABLE_TESTS)
-  enable_static_analysis(cppcheck cpplint lwyu)
+  set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -O0 -g -fprofile-arcs -ftest-coverage")
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O0 -g -fprofile-arcs -ftest-coverage")
   enable_testing()
-  enable_test_coverage()
 endif()
 
-add_all_subdirectories()
+add_subdirectory(humidifier)
+add_subdirectory(test)

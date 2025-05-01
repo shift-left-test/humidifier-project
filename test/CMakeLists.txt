@@ -21,33 +21,9 @@
 # SOFTWARE.
 
 if(ENABLE_TESTS)
-
-build_test_program(
-    NAME unittest
-    SRCS HumidifierTest.cpp
-    LIBS humidifier
-)
-
+  include(GoogleTest)
+  add_executable(unittest HumidifierTest.cpp)
+  target_link_libraries(unittest PRIVATE humidifier)
+  target_link_libraries(unittest PRIVATE gtest gmock gmock_main)
+  gtest_add_tests(unittest "" AUTO)
 endif()
-
-######################################################################
-#
-# The code above can be written as below using the CMake commands.
-#
-# if(ENABLE_TESTS)
-#
-# find_package(Threads REQUIRED)
-# find_package(GTest REQUIRED)
-# find_package(GMock REQUIRED)
-#
-# add_executable(unittest HumidifierTest.cpp)
-#
-# target_include_directories(unittest
-#   PRIVATE ${GTEST_INCLUDE_DIRS} ${GMOCK_INCLUDE_DIRS})
-#
-# target_link_libraries(unittest
-#   PRIVATE GTest::GTest GMock::GMock GMock::Main ${CMAKE_THREAD_LIBS_INIT} humidifier)
-#
-# gtest_add_tests(unittest "" AUTO)
-#
-# endif()

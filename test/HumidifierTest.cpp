@@ -30,8 +30,9 @@
 #include "mocks/FakeHumiditySensor.hpp"
 #include "humidifier/Humidifier.hpp"
 
-using ::testing::Return;
+DEFINE_FFF_GLOBALS;
 
+using ::testing::Return;
 
 class HumidifierTest : public ::testing::Test {
  public:
